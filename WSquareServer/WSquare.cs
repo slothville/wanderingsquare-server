@@ -17,6 +17,7 @@ namespace WSquareServer
 	{
 		GraphicsDeviceManager graphics;
 		SpriteBatch spriteBatch;
+		public PlayScreen playscreen;
 
 		public WSquare ()
 		{
@@ -34,6 +35,7 @@ namespace WSquareServer
 		protected override void Initialize ()
 		{
 			// TODO: Add your initialization logic here
+			playscreen = new PlayScreen ();
 			base.Initialize ();
 				
 		}
@@ -46,6 +48,7 @@ namespace WSquareServer
 		{
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch (GraphicsDevice);
+			playscreen.LoadContent (Content);
 
 			//TODO: use this.Content to load your game content here 
 		}
@@ -57,7 +60,8 @@ namespace WSquareServer
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Update (GameTime gameTime)
 		{
-			// TODO: Add your update logic here			
+			// TODO: Add your update logic here		
+			playscreen.Update (gameTime);
 			base.Update (gameTime);
 		}
 
@@ -68,6 +72,9 @@ namespace WSquareServer
 		protected override void Draw (GameTime gameTime)
 		{
 			graphics.GraphicsDevice.Clear (Color.CornflowerBlue);
+			spriteBatch.Begin ();
+			playscreen.Draw (spriteBatch);
+			spriteBatch.End ();
 		
 			//TODO: Add your drawing code here
             
